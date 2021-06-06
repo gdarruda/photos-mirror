@@ -45,6 +45,4 @@ for photo in api.photos.all:
         if save_file.delay(alternative['url'], filename):
             logging.info(f"RAW Photo {filename} queued!")
 
-    break
-
 logging.info(f"Process finished!")
