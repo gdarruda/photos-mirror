@@ -1,0 +1,5 @@
+[local]
+broker = 'amqp://guest:guest@localhost:5672'
+
+[docker]
+broker = 'amqp://guest:guest@rabbitmq:5672'

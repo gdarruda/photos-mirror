@@ -1,0 +1,24 @@
+services:
+    rabbitmq:
+        image: rabbitmq:3.8
+        ports:
+            - "5672:5672"
+    celery:
+        build: .
+        entrypoint: "celery -A async_download worker --loglevel=INFO"
+        environment:
+            - ENV_FOR_DYNACONF=docker
+        depends_on:
+            - rabbitmq
+        volumes: 
+            - ${DOWNLOAD_PATH}:/photos-mirror/downloads
+    app:
+        build: .
+        stdin_open: true
+        tty: true
+        entrypoint: "python app.py"
+        environment:
+            - ENV_FOR_DYNACONF=docker
+        depends_on:
+            - rabbitmq
+            - celery
