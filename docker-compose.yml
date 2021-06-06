@@ -19,6 +19,8 @@ services:
         entrypoint: "python app.py"
         environment:
             - ENV_FOR_DYNACONF=docker
+        volumes:
+            - ${COOKIE_PATH}:/photos-mirror/cookies
         depends_on:
             - rabbitmq
             - celery

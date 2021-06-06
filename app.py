@@ -4,9 +4,13 @@ from config import settings
 
 import logging
 import sys
+from os import makedirs
+
+makedirs('cookies/', exist_ok=True)
 
 api = PyiCloudService(settings.icloud.user, 
-                      settings.icloud.password)
+                      settings.icloud.password,
+                      cookie_directory='cookies')
 
 if api.requires_2fa:
     print("Two-factor authentication required.")
