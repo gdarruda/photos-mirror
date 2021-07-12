@@ -16,7 +16,7 @@ services:
         build: .
         stdin_open: true
         tty: true
-        entrypoint: "python app.py"
+        entrypoint: "python3 app.py"
         environment:
             - ENV_FOR_DYNACONF=docker
         volumes:
